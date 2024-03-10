@@ -101,7 +101,10 @@ app.get("/categorys/:category_id",(req,res)=>{
 app.post("/categorys",(req,res)=>{
     Categorys.create(req.body)
     .then((row)=>{  //rowข้อมูลที่ได้กลับมา
-        res.status(200).json(row)
+        res.status(200).json({
+            status: true,
+            row: row
+        })
     })
     .catch((err)=>{
         res.status(200).json(err)
