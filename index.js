@@ -212,14 +212,12 @@ app.get("/products",(req,res)=>{
        include:[{
         model: Categorys,
         attributes:["category_name"]
+       },
+       {
+        model: Status,
+        attributes:["status_name"]
        }]
-    }) ,
-    Status.findAll({
-        include:[{
-            model: Status,
-            attributes:["status_name"]
-        }]
-    })
+    }) 
     .then((row)=>{  
         res.status(200).json(row)
     })
@@ -289,10 +287,30 @@ app.delete("/products",(req,res)=>{
     .catch((err)=>{
         res.status(200).json(err)
     })
-
 });
 
-
+app.get("/statuses",(req,res)=>{ 
+    Status.findAll() 
+    .then((row)=>{ 
+        res.status(200).json(row)
+    })
+    .catch((err)=>{
+        res.status(200).json(err)
+    })
+});
+app.get("/statuses/:statuses_id",(req,res)=>{
+    Status.findOne({
+        where:{
+            statuses_id:req.params.statuses_id,
+        }  
+    })
+    .then((row)=>{  //rowข้อมูลที่ได้กลับมา
+        res.status(200).json(row)
+    })
+    .catch((err)=>{
+        res.status(200).json(err)
+    })
+});
 
 app.listen(PORT,()=>{
     console.log(`Sever run on port ${PORT}`);
