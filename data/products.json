@@ -1,72 +1,76 @@
 [
   {
-    "product_id": "P001",
     "product_name": "Widget A",
     "product_amount": 100,
     "product_price": 24.99,
-    "category_id": "C001"
+    "category_id": "1",
+    "status_id":1
   },
   {
-    "product_id": "P002",
     "product_name": "Gadget B",
     "product_amount": 75,
     "product_price": 49.99,
-    "category_id": "C001"
+    "category_id": "1",
+    "status_id":1
   },
   {
-    "product_id": "P003",
     "product_name": "Tool C",
     "product_amount": 50,
     "product_price": 12.99,
-    "category_id": "C002"
+    "category_id": "2",
+    "status_id":1
   },
   {
-    "product_id": "P004",
     "product_name": "Device D",
     "product_amount": 200,
     "product_price": 99.99,
-    "category_id": "C001"
+    "category_id": "1",
+    "status_id":1
   },
   {
-    "product_id": "P005",
     "product_name": "Accessory E",
     "product_amount": 30,
     "product_price": 7.99,
-    "category_id": "C003"
+    "category_id": "3",
+    "status_id":1
   },
   {
-    "product_id": "P006",
     "product_name": "Gizmo F",
     "product_amount": 80,
     "product_price": 34.99,
-    "category_id": "C001"
+    "category_id": "1",
+    "status_id":1
   },
   {
-    "product_id": "P007",
+ 
     "product_name": "Thingamajig G",
     "product_amount": 150,
     "product_price": 19.99,
-    "category_id": "C003"
+    "category_id": "3",
+    "status_id":1
   },
   {
-    "product_id": "P008",
+ 
     "product_name": "Contraption H",
     "product_amount": 60,
     "product_price": 59.99,
-    "category_id": "C002"
+    "category_id": "2",
+    "status_id":2
   },
   {
-    "product_id": "P009",
+
     "product_name": "Instrument I",
     "product_amount": 25,
     "product_price": 44.99,
-    "category_id": "C001"
+    "category_id": "1",
+    "status_id":1
   },
   {
-    "product_id": "P010",
+  
     "product_name": "Apparatus J",
     "product_amount": 120,
     "product_price": 29.99,
-    "category_id": "C003"
+    "category_id": "3",
+    "status_id":2
   }
 ]

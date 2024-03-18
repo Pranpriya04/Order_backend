@@ -1,6 +1,9 @@
 require('dotenv').config(); //require เอาไว้เรียก library ต้องมี .config() ต่อ
 const express = require('express'); 
 const Sequelize = require('sequelize');
+const Categorys_data = require('./data/categorys.json');
+const Products_data = require('./data/products.json');
+const Status_data = require('./data/status.json');
 const app = express(); 
 const PORT = process.env.PORT || 3000;
 
@@ -19,6 +22,19 @@ const Categorys = seq.define("categorys",{
         primaryKey:true
     },
     category_name:{
+        type: Sequelize.STRING,
+        allowNull: false
+    }
+    
+});
+
+const Status = seq.define("statuses",{
+    status_id:{
+        type: Sequelize.INTEGER,
+        autoIncrement: true,
+        primaryKey:true
+    },
+    status_name:{
         type: Sequelize.STRING,
         allowNull: false
     }
@@ -46,6 +62,10 @@ const Products = seq.define("products",{
     category_id:{
         type: Sequelize.INTEGER,
         allowNull: false
+    },
+    status_id:{
+        type: Sequelize.INTEGER,
+        allowNull: false
     }
 });
 
@@ -55,9 +75,36 @@ Products.belongsTo(Categorys,{ //m-1
 Categorys.hasMany(Products,{ //1-m
     foreignKey:"category_id" 
 })
+Status.hasMany(Products,{
+    foreignKey:"status_id"
+})
+Products.belongsTo(Status,{
+    foreignKey:"status_id"
+})
 
 seq.sync();
 
+app.get("/insertcategory",(req,res)=>{
+    Categorys_data.map(function (row) {
+        console.log(row);
+        Categorys.create(row);
+    })
+    res.end()
+});
+app.get("/insertstatus",(req,res)=>{
+    Status_data.map(function(row) {
+        console.log(row);
+        Status.create(row);
+    })
+    res.end();
+});
+app.get("/insertproduct",(req,res)=>{
+    Products_data.map(function (row) {
+        console.log(row);
+        Products.create(row);
+    })
+    res.end();
+})
 
 app.get("/",(req,res)=>{
     res.status(200).json("หิวข้าว");
@@ -166,7 +213,13 @@ app.get("/products",(req,res)=>{
         model: Categorys,
         attributes:["category_name"]
        }]
-    }) 
+    }) ,
+    Status.findAll({
+        include:[{
+            model: Status,
+            attributes:["status_name"]
+        }]
+    })
     .then((row)=>{  
         res.status(200).json(row)
     })
